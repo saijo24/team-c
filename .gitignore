@@ -127,10 +127,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+<<<<<<< HEAD
 <<<<<<< 414a4c9c581b697349b2c245490f58125a0f8ab7
 =======
+=======
+>>>>>>> rokusuke
 
 .csv
 
 *.csv
+<<<<<<< HEAD
 >>>>>>> UPDATE GITIGNORE
+=======
+>>>>>>> rokusuke
