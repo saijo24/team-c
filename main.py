@@ -3,7 +3,12 @@ from Classification_module.cl_basic import cl_basic
 
 def classification(parsed_text):
   classification_main_result =  cl_basic(parsed_text)
-  status =classification_main_result.pop(2)
+  if len(classification_main_result) == 3:
+    status =classification_main_result.pop(2)
+  elif len(classification_main_result) == 2:
+    status =classification_main_result.pop(2)
+  else:
+    exit()
   result = {
     "basic_classification":classification_main_result,
     "status":status,
