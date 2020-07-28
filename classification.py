@@ -37,5 +37,5 @@ def main():
 
 if __name__ == "__main__":
   while True:
-    #main()
-    input_csv()
+    main()
+    #input_csv()
