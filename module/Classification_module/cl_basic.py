@@ -37,7 +37,7 @@ def cl_basic(data):
       if key[0] in [6,7]:
         result.append(None)
         break
-      if '?' in data:
+      if '？' in data or '?' in data:
         result.append("Question")
         i+=1
         continue
