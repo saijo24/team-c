@@ -8,6 +8,8 @@ classification.pyをインポート。
 from classfication import classification
 ```
 
+加えて「psycopg2」もpipか何かでインストール。
+
 ## 引数
 
 ```python=
