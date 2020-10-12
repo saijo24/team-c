@@ -13,8 +13,8 @@ connect = psycopg2.connect("user=" + userName + " dbname=" + dbName + " password
 cursor = connect.cursor()
 
 
-# initDatas データベースにデフォルト値10.0をブチ込む
-def initDatas(users: list):
+# InitDatas データベースにデフォルト値10.0をブチ込む
+def InitDatas(users: list):
   # 「重要」 役職テーブルは既に作られているとする
   roles = ("wolf","citizen","diviner","medium","madman","hunter","co_owner","hamster",)
 
@@ -52,8 +52,8 @@ def exiCo() -> int:
 
   return count
 
-# fineDatas 役職テーブルのデータを全部消す(一応)
-def fineDatas(users: list):
+# FineDatas 役職テーブルのデータを全部消す(一応)
+def FineDatas(users: list):
   # 「重要」 役職テーブルは既に作られているとする
   roles = ("wolf", "citizen", "diviner", "medium","madman", "hunter", "co_owner", "hamster",)
 

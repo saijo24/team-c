@@ -19,8 +19,8 @@ Tag = {
 # swapedTag 辞書のキーと値を入れ替えたもの
 swapedTag = {val: key for key, val in Tag.items()}
 
-# assem 重み計算用
-def assem(data: dict, user: str):
+# Assem 重み計算用
+def Assem(data: dict, user: str):
   # 以前までの重み
   # basicClass 基本分類結果(基本は一つ)
   basicClass = data["basic_classification"][0]
@@ -37,25 +37,25 @@ def assem(data: dict, user: str):
   if basicClass == "Coming_out":
     # カミングアウトで狼
     if subClass == "Wolf":
-      setData("wolf", user, getData("wolf", user)*100)
+      SetData("wolf", user, GetData("wolf", user)*100)
     # カミングアウトで占い師
     if subClass == "Diviner":
-      setData("diviner", user, getData("diviner", user)*1.3)
-      setData("wolf", user, getData("wolf", user)*1.2)
-      setData("madman", user, getData("madman", user)*1.2)
+      SetData("diviner", user, GetData("diviner", user)*1.3)
+      SetData("wolf", user, GetData("wolf", user)*1.2)
+      SetData("madman", user, GetData("madman", user)*1.2)
     # カミングアウトで霊媒師
     if subClass == "Medium":
-      setData("medium", user, getData("medium", user)*1.5)
-      setData("wolf", user, getData("wolf", user)*1.1)
-      setData("madman", user, getData("madman", user)*1.1)
+      SetData("medium", user, GetData("medium", user)*1.5)
+      SetData("wolf", user, GetData("wolf", user)*1.1)
+      SetData("madman", user, GetData("madman", user)*1.1)
     # カミングアウトで市民
     if subClass == "Citizen":
-      setData("citizen", user, getData("citizen", user)*1.5)
+      SetData("citizen", user, GetData("citizen", user)*1.5)
     # カミングアウトで共有者
     if subClass == "Co_owner":
       c = md.exiCo()
       if c <= 1:
-        setData("co_owner", user, 50878.0)
+        SetData("co_owner", user, 50878.0)
       # else:
         # setData("co_owoner", )
 
@@ -63,36 +63,36 @@ def assem(data: dict, user: str):
   if basicClass == "Divined_inquested":
     # 占い結果で人狼側だった
     if subClass == "Wolf":
-      setData("wolf", target, getData("wolf", target)*2.5)
+      SetData("wolf", target, GetData("wolf", target)*2.5)
   
   # 守護する人の宣言
   if basicClass == "Guard":
-    setData("diviner", target, getData("diviner", target)*1.1)
-    setData("citizen", target, getData("citizen", target)*1.1)
+    SetData("diviner", target, GetData("diviner", target)*1.1)
+    SetData("citizen", target, GetData("citizen", target)*1.1)
     # 意見について
     if middleClass == "Opinion":
       # 処刑についての意見
       if subClass == "Execution":
         # 何かしらの意見をしている
-        setData("citizen", user, getData("citizen", user)*1.2)
+        SetData("citizen", user, GetData("citizen", user)*1.2)
       # 進行についての意見
       if subClass == "Facilitator":
-        setData("citizen", user, getData("citizen", user)*1.2)
+        SetData("citizen", user, GetData("citizen", user)*1.2)
 
   # 投票について
   if basicClass == "Vote":
     # 占いについて
     if subClass == "Diviner":
-      setData("wolf", target, getData("wolf", target)*1.1)
+      SetData("wolf", target, GetData("wolf", target)*1.1)
 
   # 推測について
   if basicClass == "Estimate":
     # 人狼についての推測
     if subClass == "wolf":
-      setData("wolf", target, getData("wolf", target)*1.1)
+      SetData("wolf", target, GetData("wolf", target)*1.1)
     # 狂人についての推測
     if subClass == "madman":
-      setData("madman", target, getData("madman", target)*1.1)
+      SetData("madman", target, GetData("madman", target)*1.1)
 
   # 意見について
   if basicClass == "Opinion":
@@ -100,10 +100,10 @@ def assem(data: dict, user: str):
     if subClass == "Facilitator":
       if status == "Agree":
         # とりまそのまま
-        setData("citizen", user, getData("citizen", user))
+        SetData("citizen", user, GetData("citizen", user))
       else:
         # とりまそのまま
-        setData("citizen", user, getData("citizen", user))
+        SetData("citizen", user, GetData("citizen", user))
     print("")
   # メイン処理(end)
   
@@ -111,13 +111,13 @@ def assem(data: dict, user: str):
 
 
 # 決め打ちで重さを取得
-def getData(role: str, user: str) -> float:
+def GetData(role: str, user: str) -> float:
   # select文
   return float(md.select(role, user))
 
 
 # 重さを更新
-def setData(role: str, user: str, weight: float):
+def SetData(role: str, user: str, weight: float):
   # update文
   md.update(role, user, weight)
   return
