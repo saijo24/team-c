@@ -14,6 +14,9 @@ weightcalcs.init_database(usrs)
 
 # 重み計算 と データベース更新用
 weightcalcs.weight_calc(data, user)
+
+# 最後にデータベースの内容を削除
+weightcalcs.fine_database(users)
 ```
 
 ## 関数群
