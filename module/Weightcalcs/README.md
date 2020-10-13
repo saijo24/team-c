@@ -3,7 +3,7 @@
 ## import
 
 ```python=
-from calcs import weightcalcs
+from weightcalcs import weightcalcs
 ```
 
 ## 例
