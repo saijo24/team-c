@@ -18,7 +18,6 @@ def InitDatas(users: list):
   # 「重要」 役職テーブルは既に作られているとする
   roles = ("wolf","citizen","diviner","medium","madman","hunter","co_owner","hamster",)
 
-  # ふぉ〜
   for role in roles:
     for user in users:
       # 重さのデフォルト値を10.0とする
