@@ -33,6 +33,8 @@ weightcalcs.fine_database(users)
 
 ### init_database関数
 
+**最初に絶対実行。**
+
 データベースの初期化を行う。
 重みの初期値は 10 に設定。
 
