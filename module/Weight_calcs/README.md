@@ -6,6 +6,8 @@
 from weightcalcs import weightcalcs
 ```
 
+「psycopg2」もpipか何かでインストール。
+
 ## 例
 
 ```python=
@@ -35,14 +37,14 @@ weightcalcs.fine_database(users)
 重みの初期値は 10 に設定。
 
 * 引数
-  * users: list・・・ユーザリスト
+  * users: list・・・ユーザのリスト
 
 ### fine_database関数
 
 データベースの内容を全て消す。
 
 * 引数
-  * users: list・・・ユーザリスト
+  * users: list・・・ユーザのリスト
 
 ## 設定
 
