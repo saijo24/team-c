@@ -43,3 +43,17 @@ weightcalcs.fine_database(users)
 
 * 引数
   * users: list・・・ユーザリスト
+
+## 設定
+
+データベースの設定はsettings.jsonに書く。
+
+```json=
+{
+  "database":{
+    "name": "pdmWolf",
+    "user": "pdm",
+    "password": "pdm"
+  }
+}
+```

@@ -1,17 +1,22 @@
 import psycopg2
+import json
+
+# jsonから対象のデータベースを作成
+fileName = "utls/settings.json"
+openedJson = open(fileName, "r")
+loadedJson = json.load(openedJson)
 
 # dbName データベース名
-dbName = "pdmWolf"
+dbName = loadedJson["database"]["name"]
 # userName ユーザ名
-userName = "pdm"
+userName = loadedJson["database"]["user"]
 # password パスワード
-password = "pdm"
+password = loadedJson["database"]["password"]
 
 # コネクト
 connect = psycopg2.connect("user=" + userName + " dbname=" + dbName + " password=" + password)
 # カーソル
 cursor = connect.cursor()
-
 
 # InitDatas データベースにデフォルト値10.0をブチ込む
 def InitDatas(users: list):
