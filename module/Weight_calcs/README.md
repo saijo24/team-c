@@ -1,4 +1,4 @@
-# このディレクトリにあるやつらの使い方
+# About
 
 ## import
 
@@ -52,7 +52,9 @@ weightcalcs.fine_database(users)
 
 データベースの設定はsettings.jsonに書く。
 
-```json=
+初期設定は次の通り
+
+```json
 {
   "database":{
     "name": "pdmWolf",
