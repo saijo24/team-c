@@ -1,10 +1,9 @@
 from . import manageData as md
 from . import datas as dts
 
-# Assem 重み計算用
 
-
-def Assem(data: dict, user: str):
+# assem 重み計算用
+def assem(data: dict, user: str):
     # 以前までの重み
     # basicClass 基本分類結果(基本は一つ)
     basicClass = data["basic_classification"][0]
