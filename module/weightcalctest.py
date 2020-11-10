@@ -19,7 +19,7 @@ if __name__ == "__main__":
     # 分類結果辞書とユーザ名(or ID)を引数とする
     # この関数を実行すれば重さ計算を終えて
     # テーブルの更新も終了する
-    bc.assem(gotData, "AAA")
+    bc.Assem(gotData, "AAA")
     md.exiCo()
 
     # 役職テーブルにあるデータを全て削除

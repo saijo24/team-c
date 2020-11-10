@@ -46,6 +46,13 @@ def select(role: str, user: str) -> float:
     return ret[0]
 
 
+# selectAll 役職指定
+def selectAll(role: str):
+    cursor.execute("SELECT * FROM %s", (role,))
+    res = cursor.fetch()
+    return res
+
+
 # update 役職テーブルのユーザの重さの更新
 def update(role: str, user: str, weight: float):
     cursor.execute("UPDATE " + role + " SET weight=" +
