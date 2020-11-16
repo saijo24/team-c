@@ -1,6 +1,8 @@
 from Weight_calc import basicClass as bc
 from Weight_calc import manageData as md
 
+# ここのプログラムは全てテスト用(サンプル)
+
 # gotData テスト用
 gotData = {
     'basic_classification': ['Coming_out', 'Request'],
