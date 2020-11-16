@@ -1,5 +1,6 @@
 from . import manageData as md
 from . import datas as dts
+import random
 
 
 # assem 重み計算用
@@ -32,7 +33,8 @@ def assem(data: dict, user: str):
             SetData("madman", user, GetData("madman", user)*1.1)
         # カミングアウトで市民
         if subClass == "Citizen":
-            SetData("citizen", user, GetData("citizen", user)*1.5)
+            SetData("citizen", user, GetData(
+                "citizen", user)*random.uniform(1.0, 3.0))
         # カミングアウトで共有者
         if subClass == "Co_owner":
             c = md.exiCo()
@@ -71,10 +73,10 @@ def assem(data: dict, user: str):
     if basicClass == "Estimate":
         # 人狼についての推測
         if subClass == "wolf":
-            SetData("wolf", target, GetData("wolf", target)*1.1)
+            SetData("wolf", target, GetData("wolf", target)*1.4)
         # 狂人についての推測
         if subClass == "madman":
-            SetData("madman", target, GetData("madman", target)*1.1)
+            SetData("madman", target, GetData("madman", target)*1.3)
 
     # 意見について
     if basicClass == "Opinion":
