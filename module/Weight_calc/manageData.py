@@ -38,16 +38,42 @@ def initDatas(users: list):
     return
 
 
-# select 役職テーブルのユーザの重さを取得
 def select(role: str, user: str) -> float:
+    """
+    役職テーブルからユーザの重さを取得します。
+
+    Parameters
+    ----------
+    role : str
+        役職
+    user : str
+        テーブルに登録されているユーザ名
+
+    Returns
+    -------
+    ret[0]
+        指定された重さ
+    """
     cursor.execute("SELECT weight FROM " + role +
                    " WHERE user_name='" + user + "';")
     ret = cursor.fetchone()
     return ret[0]
 
 
-# selectAll 役職指定
 def selectAll(role: str):
+    """
+    役職のテーブルデータを全取得
+
+    Parameters
+    ----------
+    role : str
+        役職(テーブル)
+
+    Returns
+    -------
+    res: dict
+        多分辞書型
+    """
     cursor.execute("SELECT * FROM %s", (role,))
     res = cursor.fetch()
     return res
@@ -55,6 +81,18 @@ def selectAll(role: str):
 
 # update 役職テーブルのユーザの重さの更新
 def update(role: str, user: str, weight: float):
+    """
+    役職テーブルの指定されたユーザの重さの更新
+
+    Parameters
+    ----------
+    role : str
+        役職
+    user : str
+        ユーザ名(テーブルに保存されている)
+    weight : float
+        更新後の重さ
+    """
     cursor.execute("UPDATE " + role + " SET weight=" +
                    str(weight) + " WHERE user_name='" + user + "';")
     return
