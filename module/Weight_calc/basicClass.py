@@ -21,11 +21,17 @@ def assem(data: dict, user: str):
         # カミングアウトで狼
         if subClass == "Wolf":
             SetData("wolf", user, GetData("wolf", user)*100)
+            SetData("madman", user, GetData("madman", user) * random.uniform(2.0, 4.0))
+            SetData("hamster", user, GetData("hamster", user) * random.uniform(1.0, 3.0))
+            SetData("citizen", user, random.uniform(0.0, 1.0))
+            SetData("diviner", user, random.uniform(0.0, 1.0))
         # カミングアウトで占い師
         if subClass == "Diviner":
             SetData("diviner", user, GetData("diviner", user)*1.3)
-            SetData("wolf", user, GetData("wolf", user)*1.2)
-            SetData("madman", user, GetData("madman", user)*1.2)
+            # SetData("wolf", user, GetData("wolf", user)*1.2)
+            SetData("wolf", user, GetData("wolf", user) * random.uniform(1.0, 2.0))
+            SetData("madman", user, GetData(
+                "madman", user)*random.uniform(1.0, 2.0))
         # カミングアウトで霊媒師
         if subClass == "Medium":
             SetData("medium", user, GetData("medium", user)*1.5)
@@ -33,8 +39,7 @@ def assem(data: dict, user: str):
             SetData("madman", user, GetData("madman", user)*1.1)
         # カミングアウトで市民
         if subClass == "Citizen":
-            SetData("citizen", user, GetData(
-                "citizen", user)*random.uniform(1.0, 3.0))
+            SetData("citizen", user, GetData("citizen", user)*random.uniform(1.0, 3.0))
         # カミングアウトで共有者
         if subClass == "Co_owner":
             c = md.exiCo()

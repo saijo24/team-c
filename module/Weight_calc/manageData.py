@@ -3,15 +3,18 @@ import json
 
 # jsonから対象のデータベースを作成
 fileName = "utls/settings.json"
-openedJson = open(fileName, "r")
-loadedJson = json.load(openedJson)
+# openedJson = open(fileName, "r")
+# loadedJson = json.load(openedJson)
 
 # dbName データベース名
-dbName = loadedJson["database"]["name"]
+# dbName = loadedJson["database"]["name"]
+dbName = "pdmWolf"
 # userName ユーザ名
-userName = loadedJson["database"]["user"]
+# userName = loadedJson["database"]["user"]
+userName = "pdm"
 # password パスワード
-password = loadedJson["database"]["password"]
+# password = loadedJson["database"]["password"]
+password = "pdm"
 
 # コネクト
 connect = psycopg2.connect(
@@ -23,16 +26,14 @@ cursor = connect.cursor()
 # initDatas データベースにデフォルト値10.0をブチ込む
 def initDatas(users: list):
     # 「重要」 役職テーブルは既に作られているとする
-    roles = ("wolf", "citizen", "diviner", "medium",
-             "madman", "hunter", "co_owner", "hamster",)
+    roles = ("wolf", "citizen", "diviner", "medium", "madman", "hunter", "co_owner", "hamster",)
 
     # ふぉ〜
     for role in roles:
         for user in users:
             # 重さのデフォルト値を10.0とする
             # sen = "INSERT INTO " + role + " VALUES ('" + user + "', 10.0);"
-            cursor.execute("INSERT INTO " + role +
-                           " VALUES (%s, 10.0);", (user,))
+            cursor.execute("INSERT INTO " + role + " VALUES (%s, 10.0);", (user,))
     connect.commit()
 
     return
@@ -54,8 +55,7 @@ def select(role: str, user: str) -> float:
     ret[0]
         指定された重さ
     """
-    cursor.execute("SELECT weight FROM " + role +
-                   " WHERE user_name='" + user + "';")
+    cursor.execute("SELECT weight FROM " + role + " WHERE user_name='" + user + "';")
     ret = cursor.fetchone()
     return ret[0]
 
@@ -74,8 +74,32 @@ def selectAll(role: str):
     res: dict
         多分辞書型
     """
-    cursor.execute("SELECT * FROM %s", (role,))
-    res = cursor.fetch()
+    if role == "wolf":
+        cursor.execute("SELECT * FROM wolf")
+        res = cursor.fetchall()
+    elif role == "citizen":
+        cursor.execute("SELECT * FROM citizen")
+        res = cursor.fetchall()
+    elif role == "diviner":
+        cursor.execute("SELECT * FROM diviner")
+        res = cursor.fetchall()
+    elif role == "medium":
+        cursor.execute("SELECT * FROM medium")
+        res = cursor.fetchall()
+    elif role == "madman":
+        cursor.execute("SELECT * FROM madman")
+        res = cursor.fetchall()
+    elif role == "hunter":
+        cursor.execute("SELECT * FROM hunter")
+        res = cursor.fetchall()
+    elif role == "co_owner":
+        cursor.execute("SELECT * FROM co_owner")
+        res = cursor.fetchall()
+    elif role == "hamster":
+        cursor.execute("SELECT * FROM hamster")
+        res = cursor.fetchall()
+    else:
+        print("[ERROR]存在しない役職が指定されています。")
     return res
 
 
@@ -93,8 +117,7 @@ def update(role: str, user: str, weight: float):
     weight : float
         更新後の重さ
     """
-    cursor.execute("UPDATE " + role + " SET weight=" +
-                   str(weight) + " WHERE user_name='" + user + "';")
+    cursor.execute("UPDATE " + role + " SET weight=" + str(weight) + " WHERE user_name='" + user + "';")
     return
 
 
@@ -113,8 +136,7 @@ def exiCo() -> int:
 # fineDatas 役職テーブルのデータを全部消す(一応)
 def fineDatas(users: list):
     # 「重要」 役職テーブルは既に作られているとする
-    roles = ("wolf", "citizen", "diviner", "medium",
-             "madman", "hunter", "co_owner", "hamster",)
+    roles = ("wolf", "citizen", "diviner", "medium", "madman", "hunter", "co_owner", "hamster",)
 
     # ふぉ〜
     for role in roles:
