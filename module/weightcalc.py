@@ -4,7 +4,7 @@ import json
 import datetime
 
 
-def initDatabaseTable(users: list):
+def InitDatabaseTable(users: list):
     """
     データベースのテーブルを作成する。
 
@@ -21,7 +21,7 @@ def initDatabaseTable(users: list):
     return
 
 
-def fineDatabaseTable(users: list):
+def FineDatabaseTable(users: list):
     """
     テーブルに格納されているデータを削除します。
 
@@ -34,7 +34,7 @@ def fineDatabaseTable(users: list):
     return
 
 
-def weightCalc(data: dict, user: str):
+def WeightCalc(data: dict, user: str):
     """
     分類結果と発言者から重みを計算する。
 
@@ -48,7 +48,7 @@ def weightCalc(data: dict, user: str):
     bc.assem(data, user)
 
 
-def selectRoleTable(role: str):
+def SelectRoleTable(role: str):
     """
     役職テーブルの一括取得
 
@@ -65,7 +65,7 @@ def selectRoleTable(role: str):
     return md.selectAll(role)
 
 
-def createAllRoleDictArray():
+def CreateAllRoleDictArray():
     """
     現在の全テーブル情報をJSONで返す。
 
@@ -82,7 +82,7 @@ def createAllRoleDictArray():
     return allRoleDictArray
 
 
-def outputJSON(path="./", file=""):
+def OutputJSON(path="./", file=""):
     """
     指定されたディレクトリパスにテーブル情報を出力する。
 
@@ -101,7 +101,7 @@ def outputJSON(path="./", file=""):
     return
 
 
-# テスト用
+# 以下テスト用
 gotData = {
     'basic_classification': ['Coming_out', 'Request'],
     'status': 'Disagree',
@@ -115,21 +115,21 @@ roles = ("wolf", "citizen", "diviner", "medium",
 
 if __name__ == "__main__":
     # 役職テーブルの初期化
-    initDatabaseTable(users)
+    InitDatabaseTable(users)
 
     # print(selectRoleTable(roles[3]))
     # 分類結果辞書とユーザ名(or ID)を引数とする
     # この関数を実行すれば重さ計算を終えて
     # テーブルの更新も終了する
     # bc.assem(gotData, "AAA")
-    weightCalc(gotData, users[0])
+    WeightCalc(gotData, users[0])
     # md.exiCo()
 
     # print(createAllRoleDictArray())
     for role in roles:
-        print(selectRoleTable(role))
+        print(SelectRoleTable(role))
 
-    outputJSON()
+    # outputJSON()
 
     # 役職テーブルにあるデータを全て削除
-    fineDatabaseTable(users)
+    FineDatabaseTable(users)
