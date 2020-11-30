@@ -28,7 +28,6 @@ def assem(data: dict, user: str):
         # カミングアウトで占い師
         if subClass == "Diviner":
             SetData("diviner", user, GetData("diviner", user)*1.3)
-            # SetData("wolf", user, GetData("wolf", user)*1.2)
             SetData("wolf", user, GetData("wolf", user) * random.uniform(1.0, 2.0))
             SetData("madman", user, GetData(
                 "madman", user)*random.uniform(1.0, 2.0))

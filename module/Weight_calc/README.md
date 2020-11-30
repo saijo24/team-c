@@ -5,7 +5,7 @@
 moduleディレクトリ内のweightcalc.pyを呼び出してください。
 
 ```python=
-
+from module import weightcalc
 ```
 
 「psycopg2」もpipか何かでインストール。

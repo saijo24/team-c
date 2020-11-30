@@ -28,7 +28,6 @@ def initDatas(users: list):
     # 「重要」 役職テーブルは既に作られているとする
     roles = ("wolf", "citizen", "diviner", "medium", "madman", "hunter", "co_owner", "hamster",)
 
-    # ふぉ〜
     for role in roles:
         for user in users:
             # 重さのデフォルト値を10.0とする
@@ -60,7 +59,7 @@ def select(role: str, user: str) -> float:
     return ret[0]
 
 
-def selectAll(role: str):
+def selectRoleAll(role: str):
     """
     役職のテーブルデータを全取得
 
