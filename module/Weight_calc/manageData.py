@@ -102,6 +102,25 @@ def selectRoleAll(role: str):
     return res
 
 
+def selectUsers():
+    """
+    ユーザのリストを返す
+
+    Returns
+    -------
+    list of str
+        ユーザのリスト
+    """
+    users = []
+    cursor.execute("SELECT user_name FROM wolf;")
+    res = cursor.fetchall()
+    for r in res:
+        users.append(r[0])
+
+    users.sort()
+    return users
+
+
 # update 役職テーブルのユーザの重さの更新
 def update(role: str, user: str, weight: float):
     """

@@ -59,10 +59,23 @@ def SelectRoleTable(role: str):
 
     Returns
     -------
-    dict
+    list of tuple
         テーブル
+        [(user_name, weight),...]
     """
-    return md.selectAll(role)
+    return md.selectRoleAll(role)
+
+
+def SelectUsers():
+    """
+    ユーザのリストを返す
+
+    Returns
+    -------
+    list of str
+        ユーザのリスト
+    """
+    return md.selectUsers()
 
 
 def CreateAllRoleDictArray():
@@ -117,7 +130,7 @@ if __name__ == "__main__":
     # 役職テーブルの初期化
     InitDatabaseTable(users)
 
-    # print(selectRoleTable(roles[3]))
+    print(SelectRoleTable(roles[3]))
     # 分類結果辞書とユーザ名(or ID)を引数とする
     # この関数を実行すれば重さ計算を終えて
     # テーブルの更新も終了する
@@ -126,8 +139,10 @@ if __name__ == "__main__":
     # md.exiCo()
 
     # print(createAllRoleDictArray())
-    for role in roles:
-        print(SelectRoleTable(role))
+    # for role in roles:
+    #     print(SelectRoleTable(role))
+
+    # print(SelectUsers())
 
     # outputJSON()
 
