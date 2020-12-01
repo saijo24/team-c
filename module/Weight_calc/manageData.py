@@ -1,31 +1,30 @@
 import psycopg2
 import json
 
-# jsonから対象のデータベースを作成
-fileName = "utls/settings.json"
-# openedJson = open(fileName, "r")
-# loadedJson = json.load(openedJson)
-
 # dbName データベース名
-# dbName = loadedJson["database"]["name"]
 dbName = "pdmWolf"
 # userName ユーザ名
-# userName = loadedJson["database"]["user"]
 userName = "pdm"
 # password パスワード
-# password = loadedJson["database"]["password"]
 password = "pdm"
 
 # コネクト
-connect = psycopg2.connect(
-    "user=" + userName + " dbname=" + dbName + " password=" + password)
+connect = psycopg2.connect("user=" + userName + " dbname=" + dbName + " password=" + password)
 # カーソル
 cursor = connect.cursor()
 
 
-# initDatas データベースにデフォルト値10.0をブチ込む
 def initDatas(users: list):
-    # 「重要」 役職テーブルは既に作られているとする
+    """
+    データベースの初期化を行う。
+    全ユーザに重み10.0を設定する。
+
+    Parameters
+    ----------
+    users : list of str
+        全ユーザのリスト
+    """
+    createAllTables()
     roles = ("wolf", "citizen", "diviner", "medium", "madman", "hunter", "co_owner", "hamster",)
 
     for role in roles:
@@ -35,6 +34,30 @@ def initDatas(users: list):
             cursor.execute("INSERT INTO " + role + " VALUES (%s, 10.0);", (user,))
     connect.commit()
 
+    return
+
+
+def createAllTables():
+    """
+    役職テーブルの作成
+    """
+    roles = ("wolf", "citizen", "diviner", "medium", "madman", "hunter", "co_owner", "hamster",)
+    for role in roles:
+        cursor.execute("CREATE TABLE IF NOT EXISTS " + role + " (user_name text, weight real);")
+
+    connect.commit()
+    return
+
+
+def delectAllTables():
+    """
+    役職テーブルの削除
+    """
+    roles = ("wolf", "citizen", "diviner", "medium", "madman", "hunter", "co_owner", "hamster",)
+    for role in roles:
+        cursor.execute("DROP TABLE IF EXISTS " + role + ";")
+
+    connect.commit()
     return
 
 
@@ -152,15 +175,26 @@ def exiCo() -> int:
 
 
 # fineDatas 役職テーブルのデータを全部消す(一応)
-def fineDatas(users: list):
-    # 「重要」 役職テーブルは既に作られているとする
+def fineDatas(users: list, table_delete=False):
+    """
+    ゲームの終了処理
+
+    Parameters
+    ----------
+    users : list of str
+        ユーザのリスト
+    table_delete : bool, optional
+        テーブルも削除するのか, by default False
+    """
     roles = ("wolf", "citizen", "diviner", "medium", "madman", "hunter", "co_owner", "hamster",)
 
-    # ふぉ〜
     for role in roles:
         for user in users:
-            cursor.execute("DELETE FROM " + role +
-                           " WHERE user_name='" + user + "';")
-            connect.commit()
+            cursor.execute("DELETE FROM " + role + " WHERE user_name='" + user + "';")
+
+    connect.commit()
+
+    if table_delete:
+        delectAllTables()
 
     return

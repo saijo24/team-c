@@ -15,13 +15,13 @@ def InitDatabaseTable(users: list):
 
     Notes
     ---------
-    絶対に書いてくれ。
+    絶対に書くこと。
     """
     md.initDatas(users)
     return
 
 
-def FineDatabaseTable(users: list):
+def FineDatabaseTable(users: list, table_delete=False):
     """
     テーブルに格納されているデータを削除します。
 
@@ -30,7 +30,7 @@ def FineDatabaseTable(users: list):
     users: list of str
         ゲームに参加しているユーザのリスト    
     """
-    md.fineDatas(users)
+    md.fineDatas(users, table_delete)
     return
 
 
@@ -142,9 +142,11 @@ if __name__ == "__main__":
     # for role in roles:
     #     print(SelectRoleTable(role))
 
+    # 全ユーザを取得
     # print(SelectUsers())
 
+    # JSON形式で全テーブルを取得
     # outputJSON()
 
     # 役職テーブルにあるデータを全て削除
-    FineDatabaseTable(users)
+    FineDatabaseTable(users, False)
