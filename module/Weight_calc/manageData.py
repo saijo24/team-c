@@ -82,7 +82,7 @@ def select(role: str, user: str) -> float:
     return ret[0]
 
 
-def selectRoleAll(role: str):
+def selectRoleTable(role: str):
     """
     役職のテーブルデータを全取得
 

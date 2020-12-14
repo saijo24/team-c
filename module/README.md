@@ -15,20 +15,11 @@ from module import weightcalc
 ```python=
 ```
 
-## 関数群
+## 関数
 
-### WeightCalc(data: dict, user: str)
+外部から呼び出されることを想定している関数はアッパーキャメルケースで記述している。
 
-引数のdataは次の形を想定している。
-
-```python=
-data = {
-    'basic_classification': ['Coming_out', 'Request'],
-    'status': 'Disagree',
-    'sub_classification': 'Wolf',
-    'target': None
-}
-```
+各関数にはDocStringで引数などの情報を記述している。
 
 ## 設定
 

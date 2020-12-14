@@ -14,8 +14,13 @@ def InitDatabaseTable(users: list):
         ゲームに参加するユーザのリスト
 
     Notes
-    ---------
+    -----
     絶対に書くこと。
+
+    Examples
+    --------
+    >>> users = ("Fuge", "Hoge", "Tom", "Jon")
+    >>> InitDatabaseTable(users)
     """
     md.initDatas(users)
     return
@@ -44,6 +49,17 @@ def WeightCalc(data: dict, user: str):
         分類結果
     user : str
         発言者のユーザ名
+
+    Examples
+    --------
+    >>> users = ("Fuge", "Hoge", "Tom", "Jon")
+    >>> data = {
+            'basic_classification': ['Coming_out', 'Request'],
+            'status': 'Disagree',
+            'sub_classification': 'Wolf',
+            'target': None
+        }
+    >>> WeightCalc(data, users[2])
     """
     bc.assem(data, user)
 
@@ -62,6 +78,11 @@ def SelectRoleTable(role: str):
     list of tuple
         テーブル
         [(user_name, weight),...]
+
+    Examples
+    --------
+    >>> roles = ("wolf", "citizen", "diviner", "medium", "madman", "hunter", "co_owner", "hamster",)
+    >>> SelectRoleTable(roles[3])
     """
     return md.selectRoleAll(role)
 
@@ -74,11 +95,15 @@ def SelectUsers():
     -------
     list of str
         ユーザのリスト
+
+    Exampls
+    -------
+    >>> SelectUsers()
     """
     return md.selectUsers()
 
 
-def CreateAllRoleDictArray():
+def AllRoleDictArray():
     """
     現在の全テーブル情報をJSONで返す。
 
@@ -90,7 +115,7 @@ def CreateAllRoleDictArray():
     allRoleDictArray = []
 
     for role in roles:
-        allRoleDictArray.append({role: selectRoleTable(role)})
+        allRoleDictArray.append({role: md.selectRoleTable(role)})
 
     return allRoleDictArray
 
@@ -124,7 +149,7 @@ gotData = {
 
 users = ("AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG")
 roles = ("wolf", "citizen", "diviner", "medium",
-         "madman", "hunter", "co_owner", "hamster",)
+         "madman", "hunter", "co_owner", "hamster")
 
 if __name__ == "__main__":
     # 役職テーブルの初期化
