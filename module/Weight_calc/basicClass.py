@@ -20,9 +20,12 @@ def assem(data: dict, user: str):
     if basicClass == "Coming_out":
         # カミングアウトで狼
         if subClass == "Wolf":
-            SetData("wolf", user, GetData("wolf", user)*100)
-            SetData("madman", user, GetData("madman", user) * random.uniform(2.0, 4.0))
-            SetData("hamster", user, GetData("hamster", user) * random.uniform(1.0, 3.0))
+            # SetData("wolf", user, GetData("wolf", user)*100)
+            SetData("wolf", user, willProduct("wolf", user, 100))
+            # SetData("madman", user, GetData("madman", user) * random.uniform(2.0, 4.0))
+            SetData("madman", user, willProduct("madman", user, random.uniform(2.0, 4.0)))
+            # SetData("hamster", user, GetData("hamster", user) * random.uniform(1.0, 3.0))
+            SetData("hamster", user, willProduct("hamster", user, random.uniform(1.0, 3.0)))
             SetData("citizen", user, random.uniform(0.0, 1.0))
             SetData("diviner", user, random.uniform(0.0, 1.0))
         # カミングアウトで占い師
@@ -93,7 +96,50 @@ def assem(data: dict, user: str):
                 # とりまそのまま
                 SetData("citizen", user, GetData("citizen", user))
         print("")
+
+    roles = ("wolf", "citizen", "diviner", "medium",
+             "madman", "hunter", "co_owner", "hamster")
+    for role in roles:
+        normalize(role)
     # メイン処理(end)
+
+    return
+
+
+def willProduct(grole: str, guser: str, c: float) -> float:
+    """
+    代入するウェイト計算用
+
+    Parameters
+    ----------
+    grole : str
+        役職
+    guser : str
+        ユーザ名
+    c : float
+        定数倍用
+
+    Returns
+    -------
+    float
+    """
+    gd = GetData(grole, guser)
+    # 負の値を許容しない
+    if c < 0:
+        return gd
+    else:
+        return gd*c
+
+    return gd
+
+
+def normalize(role: str):
+    sum = md.sumWeightThisRole(role)
+    roleTable = md.selectRoleTable(role)
+
+    for rt in roleTable:
+        # print(rt)
+        SetData(role, rt[0], rt[1]/sum)
 
     return
 

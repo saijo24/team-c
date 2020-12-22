@@ -3,6 +3,8 @@ from Weight_calc import manageData as md
 import json
 import datetime
 
+# 以下関数群
+
 
 def InitDatabaseTable(users: list):
     """
@@ -84,7 +86,7 @@ def SelectRoleTable(role: str):
     >>> roles = ("wolf", "citizen", "diviner", "medium", "madman", "hunter", "co_owner", "hamster",)
     >>> SelectRoleTable(roles[3])
     """
-    return md.selectRoleAll(role)
+    return md.selectRoleTable(role)
 
 
 def SelectUsers():
@@ -155,7 +157,7 @@ if __name__ == "__main__":
     # 役職テーブルの初期化
     InitDatabaseTable(users)
 
-    print(SelectRoleTable(roles[3]))
+    print(SelectRoleTable(roles[0]))
     # 分類結果辞書とユーザ名(or ID)を引数とする
     # この関数を実行すれば重さ計算を終えて
     # テーブルの更新も終了する
@@ -172,6 +174,7 @@ if __name__ == "__main__":
 
     # JSON形式で全テーブルを取得
     # outputJSON()
+    print(SelectRoleTable(roles[0]))
 
     # 役職テーブルにあるデータを全て削除
     FineDatabaseTable(users, False)

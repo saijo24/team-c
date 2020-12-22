@@ -26,12 +26,14 @@ def initDatas(users: list):
     """
     createAllTables()
     roles = ("wolf", "citizen", "diviner", "medium", "madman", "hunter", "co_owner", "hamster",)
+    userNum = len(users)
+    w = 1/userNum
 
     for role in roles:
         for user in users:
             # 重さのデフォルト値を10.0とする
             # sen = "INSERT INTO " + role + " VALUES ('" + user + "', 10.0);"
-            cursor.execute("INSERT INTO " + role + " VALUES (%s, 10.0);", (user,))
+            cursor.execute("INSERT INTO " + role + " VALUES (%s, " + str(w) + ");", (user,))
     connect.commit()
 
     return
@@ -122,6 +124,27 @@ def selectRoleTable(role: str):
         res = cursor.fetchall()
     else:
         print("[ERROR]存在しない役職が指定されています。")
+    return res
+
+
+def sumWeightThisRole(role: str) -> float:
+    """
+    指定された役職テーブルのウェイトの合計
+
+    Parameters
+    ----------
+    role : str
+        役職名
+
+    Returns
+    -------
+    float
+    """
+    res = 0.0
+    dic = selectRoleTable(role)
+    for d in dic:
+        res += d[1]
+
     return res
 
 
