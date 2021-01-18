@@ -31,9 +31,8 @@ def assem(data: dict, user: str):
         # カミングアウトで占い師
         if subClass == "Diviner":
             SetData("diviner", user, GetData("diviner", user)*1.3)
-            SetData("wolf", user, GetData("wolf", user) * random.uniform(1.0, 2.0))
-            SetData("madman", user, GetData(
-                "madman", user)*random.uniform(1.0, 2.0))
+            SetData("wolf", user, willProduct("wolf", user, random.uniform(1.0, 2.0))
+            SetData("madman", user, willProduct("madman", user, random.uniform(1.0, 2.0))
         # カミングアウトで霊媒師
         if subClass == "Medium":
             SetData("medium", user, GetData("medium", user)*1.5)
@@ -41,10 +40,10 @@ def assem(data: dict, user: str):
             SetData("madman", user, GetData("madman", user)*1.1)
         # カミングアウトで市民
         if subClass == "Citizen":
-            SetData("citizen", user, GetData("citizen", user)*random.uniform(1.0, 3.0))
+            SetData("citizen", user, willProduct("citizen", user, random.uniform(1.0, 3.0))
         # カミングアウトで共有者
         if subClass == "Co_owner":
-            c = md.exiCo()
+            c=md.exiCo()
             if c <= 1:
                 SetData("co_owner", user, 50878.0)
             # else:
@@ -97,7 +96,7 @@ def assem(data: dict, user: str):
                 SetData("citizen", user, GetData("citizen", user))
         print("")
 
-    roles = ("wolf", "citizen", "diviner", "medium",
+    roles=("wolf", "citizen", "diviner", "medium",
              "madman", "hunter", "co_owner", "hamster")
     for role in roles:
         normalize(role)
@@ -123,7 +122,7 @@ def willProduct(grole: str, guser: str, c: float) -> float:
     -------
     float
     """
-    gd = GetData(grole, guser)
+    gd=GetData(grole, guser)
     # 負の値を許容しない
     if c < 0:
         return gd
@@ -134,8 +133,8 @@ def willProduct(grole: str, guser: str, c: float) -> float:
 
 
 def normalize(role: str):
-    sum = md.sumWeightThisRole(role)
-    roleTable = md.selectRoleTable(role)
+    sum=md.sumWeightThisRole(role)
+    roleTable=md.selectRoleTable(role)
 
     for rt in roleTable:
         # print(rt)
