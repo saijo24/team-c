@@ -35,9 +35,9 @@ def assem(data: dict, user: str):
             SetData("madman", user, willProduct("madman", user, random.uniform(1.0, 2.0)))
         # カミングアウトで霊媒師
         if subClass == "Medium":
-            SetData("medium", user, GetData("medium", user)*1.5)
-            SetData("wolf", user, GetData("wolf", user)*1.1)
-            SetData("madman", user, GetData("madman", user)*1.1)
+            SetData("medium", user, willProduct("medium", user, 1.5))
+            SetData("wolf", user, willProduct("wolf", user, 1.1))
+            SetData("madman", user, willProduct("madman", user, 1.1))
         # カミングアウトで市民
         if subClass == "Citizen":
             SetData("citizen", user, willProduct("citizen", user, random.uniform(1.0, 3.0)))
@@ -53,36 +53,36 @@ def assem(data: dict, user: str):
     if basicClass == "Divined_inquested":
         # 占い結果で人狼側だった
         if subClass == "Wolf":
-            SetData("wolf", target, GetData("wolf", target)*2.5)
+            SetData("wolf", target, willProduct("wolf", target, 2.5))
 
     # 守護する人の宣言
     if basicClass == "Guard":
-        SetData("diviner", target, GetData("diviner", target)*1.1)
-        SetData("citizen", target, GetData("citizen", target)*1.1)
+        SetData("diviner", target, willProduct("diviner", target, 1.1))
+        SetData("citizen", target, willProduct("citizen", target, 1.1))
         # 意見について
         if middleClass == "Opinion":
             # 処刑についての意見
             if subClass == "Execution":
                 # 何かしらの意見をしている
-                SetData("citizen", user, GetData("citizen", user)*1.2)
+                SetData("citizen", user, willProduct("citizen", user, 1.2))
             # 進行についての意見
             if subClass == "Facilitator":
-                SetData("citizen", user, GetData("citizen", user)*1.2)
+                SetData("citizen", user, willProduct("citizen", user, 1.2))
 
     # 投票について
     if basicClass == "Vote":
         # 占いについて
         if subClass == "Diviner":
-            SetData("wolf", target, GetData("wolf", target)*1.1)
+            SetData("wolf", target, willProduct("wolf", target, 1.1))
 
     # 推測について
     if basicClass == "Estimate":
         # 人狼についての推測
         if subClass == "wolf":
-            SetData("wolf", target, GetData("wolf", target)*1.4)
+            SetData("wolf", target, willProduct("wolf", target, 1.4))
         # 狂人についての推測
         if subClass == "madman":
-            SetData("madman", target, GetData("madman", target)*1.3)
+            SetData("madman", target, willProduct("madman", target, 1.3))
 
     # 意見について
     if basicClass == "Opinion":

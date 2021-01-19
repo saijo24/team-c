@@ -185,8 +185,16 @@ def update(role: str, user: str, weight: float):
     return
 
 
-# exiCo 共有者の数をカウントする
 def exiCo() -> int:
+    """
+    共有者の数をカウントする。
+    ただし現環境では使えない。
+
+    Returns
+    -------
+    int
+        共有者(っぽい)数
+    """
     cursor.execute("SELECT weight FROM co_owner;")
     get = cursor.fetchall()
     count = 0
